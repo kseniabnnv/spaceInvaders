@@ -1,0 +1,2 @@
+g++ -c file.cpp -I"C:/SFML-2.6.1/include" -DSFML_STATIC
+g++ file.o -o sfml-app -LC:/SFML-2.6.1/lib -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -lwinmm -lgdi32 -mwindows
