@@ -84,6 +84,7 @@ void Game::render(){
 void Game::run(){
     sf::Clock clock; //start the clock
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
+     sf::err() << "SFML Application is running...\n";
 
     while(this->window.isOpen()){
         processEvents();

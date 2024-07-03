@@ -1,5 +1,7 @@
 #include <map>
 #include <memory>
+#include <string>
+#include <SFML/Graphics.hpp>
 
 /**
  * Maps texture names to the appropriate sfml texture objects
@@ -8,12 +10,15 @@
 class TextureContainer
 {
     public:
-    enum Textures{
-        Background,
-        Player,
-        Enemy
-    }
+        enum class TextureType{
+            Background,
+            Player,
+            Alien
+        };
+
+        void load(TextureType type, const std::string& filename);
+        sf::Texture& get(TextureType type);
 
     private:
-        std::map<Textures::ID, std::unique_ptr<sf::Texture>> textureMap;
+        std::map<TextureType, std::unique_ptr<sf::Texture>> textureMap;
 };
