@@ -39,7 +39,6 @@ void Game::processEvents(){
 sf::Event event;
     while (this->window.pollEvent(event))
     {
-        std::cout << "Hello" << std::endl;
         switch(event.type){
             case sf::Event::KeyPressed:
                 handlePlayerInput(event.key.code, true);
@@ -59,7 +58,6 @@ sf::Event event;
 void Game::update(sf::Time deltaTime){
     sf::Vector2f movement(0.f, 0.f);
     if(movingUp){
-        std::cout << "Moving up!";
         movement.y -= this->playerSpeed;
     }
     if(movingDown){
@@ -72,6 +70,9 @@ void Game::update(sf::Time deltaTime){
         movement.x -= this->playerSpeed;
     }
     this->player.move(movement * deltaTime.asSeconds());
+
+    //move entities according
+    //this->entityContainer.move(deltaTime.asSeconds())
 }
 
 //render the game to the screen
@@ -84,7 +85,6 @@ void Game::render(){
 void Game::run(){
     sf::Clock clock; //start the clock
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
-     sf::err() << "SFML Application is running...\n";
 
     while(this->window.isOpen()){
         processEvents();

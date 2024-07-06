@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "textureContainer.h"
 
 #ifndef GAME_H
 #define GAME_H
