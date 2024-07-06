@@ -15,11 +15,12 @@ Game::Game(){
     this->movingRight = false;
     this->movingLeft = false;
 
-    if(!this->texture.loadFromFile("Media\\Textures\\alien.png")){
-        std::cout << "Unable to load texture file" << std::endl;
-    }
-    this->player.setTexture(this->texture);
-    player.scale(sf::Vector2f(0.5f, 0.5f));
+    //load textures
+    this->textures.load(TextureContainer::TextureType::Player, "Media\\Textures\\player.png");
+    this->textures.load(TextureContainer::TextureType::Alien, "Media\\Textures\\alien.png");
+
+    this->player.setTexture(this->textures.get(TextureContainer::TextureType::Player));
+    player.scale(sf::Vector2f(0.15f, 0.15f));
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){

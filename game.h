@@ -15,6 +15,7 @@ class Game
 
         int state;
         sf::RenderWindow window;
+        TextureContainer textures;
         sf::Texture texture;
         sf::Sprite player;
 

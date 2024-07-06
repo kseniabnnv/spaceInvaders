@@ -12,5 +12,5 @@ void TextureContainer::load(TextureType type, const std::string& filename){
 }
 
 sf::Texture& TextureContainer::get(TextureType type){
-    return *(this->textureMap.at(type))
+    return *(this->textureMap.at(type));
 }
