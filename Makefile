@@ -1,11 +1,18 @@
 exe_file=prog
-$(exe_file): main.o game.o textureContainer.o
-	g++ main.o game.o textureContainer.o -o $(exe_file) -LC:/SFML-2.6.1/lib -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -lwinmm -lgdi32
+SFML_INCLUDE_PATH = C:/SFML-2.6.1/include
+LDFLAGS = -LC:/SFML-2.6.1/lib -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -lwinmm -lgdi32
+
+$(exe_file): main.o game.o textureContainer.o alienMatrix.o
+	g++ main.o game.o textureContainer.o alienMatrix.o -o $(exe_file) $(LDFLAGS)
 main.o: main.cpp
-	g++ -c main.cpp -IC:/SFML-2.6.1/include -DSFML_STATIC
+	g++ -c main.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
 game.o: game.cpp game.h
-	g++ -c game.cpp -IC:/SFML-2.6.1/include -DSFML_STATIC
+	g++ -c game.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
 textureContainer.o: textureContainer.cpp textureContainer.h
-	g++ -c textureContainer.cpp -IC:/SFML-2.6.1/include -DSFML_STATIC
+	g++ -c textureContainer.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
+alien.o: alien.h alien.cpp
+	g++ -c alien.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
+alienMatrix.o: alienMatrix.h alienMatrix.cpp
+	g++ -c alienMatrix.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
 clean:
 	rm –f *.o $(exe_file)

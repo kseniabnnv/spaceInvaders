@@ -3,6 +3,9 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+#ifndef TEXTURECONTAINER_H
+#define TEXTURECONTAINER_H
+
 /**
  * Maps texture names to the appropriate sfml texture objects
  * 
@@ -22,3 +25,5 @@ class TextureContainer
     private:
         std::map<TextureType, std::unique_ptr<sf::Texture>> textureMap;
 };
+
+#endif

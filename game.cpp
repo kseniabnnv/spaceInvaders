@@ -3,11 +3,13 @@
 #include <fstream>
 #include "game.h"
 
+
 const sf::Time Game::TIME_PER_FRAME = sf::seconds(1.f / 60.f); 
 
-Game::Game(){
-    this->window.create(sf::VideoMode(800, 600), "Space Invaders", sf::Style::Titlebar | sf::Style::Close);
-    this->window.setSize(sf::Vector2u(800, 600));
+Game::Game()
+{
+    this->window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Space Invaders", sf::Style::Titlebar | sf::Style::Close);
+    this->window.setSize(sf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
 
     this->playerSpeed = 400.f;
     this->movingUp = false;
@@ -19,8 +21,21 @@ Game::Game(){
     this->textures.load(TextureContainer::TextureType::Player, "Media\\Textures\\player.png");
     this->textures.load(TextureContainer::TextureType::Alien, "Media\\Textures\\alien.png");
 
+    //load player texture and set its position
     this->player.setTexture(this->textures.get(TextureContainer::TextureType::Player));
-    player.scale(sf::Vector2f(0.15f, 0.15f));
+    this->player.scale(sf::Vector2f(0.15f, 0.15f));
+    float playerWidth = this->player.getGlobalBounds().width;
+    float playerHeight = this->player.getGlobalBounds().height;
+
+    float windowWidth = static_cast<float>(WINDOW_WIDTH); 
+    float windowHeight = static_cast<float>(WINDOW_HEIGHT); 
+    float playerX = (windowWidth - playerWidth) / 2.f;
+    float playerY = windowHeight - playerHeight; 
+    this->player.setPosition(playerX, playerY);
+
+    //initialize aliens and set their position
+    this->alienMatrix.setupAliens(this->textures.get(TextureContainer::TextureType::Alien), 50.f, 50.f);
+    this->alienMatrix.setPosition((WINDOW_WIDTH - this->alienMatrix.getAlienWidth() * AlienMatrix::COLS) / 2.f, 50);
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
@@ -71,15 +86,13 @@ void Game::update(sf::Time deltaTime){
         movement.x -= this->playerSpeed;
     }
     this->player.move(movement * deltaTime.asSeconds());
-
-    //move entities according
-    //this->entityContainer.move(deltaTime.asSeconds())
 }
 
 //render the game to the screen
 void Game::render(){
     this->window.clear();
     this->window.draw(this->player);
+    this->window.draw(this->alienMatrix);
     this->window.display();
 }
 
