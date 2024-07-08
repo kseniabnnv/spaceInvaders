@@ -8,7 +8,7 @@
 class AlienMatrix : public sf::Drawable, public sf::Transformable{
     public:
         AlienMatrix();
-        void setupAliens(sf::Texture&, float, float);
+        void setup(sf::Texture&, float, float);
         float getAlienHeight();
         float getAlienWidth();
 

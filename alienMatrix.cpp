@@ -5,7 +5,7 @@ AlienMatrix::AlienMatrix(){
 
 }
 
-void AlienMatrix::setupAliens(sf::Texture& alienTexture, float spriteHeight, float spriteWidth){
+void AlienMatrix::setup(sf::Texture& alienTexture, float spriteHeight, float spriteWidth){
     sf::Vector2u textureSize = alienTexture.getSize();
     this->alienHeight = spriteHeight;
     this->alienWidth = spriteWidth;

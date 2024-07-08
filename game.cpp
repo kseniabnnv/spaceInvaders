@@ -11,43 +11,20 @@ Game::Game()
     this->window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Space Invaders", sf::Style::Titlebar | sf::Style::Close);
     this->window.setSize(sf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
 
-    this->playerSpeed = 400.f;
-    this->movingUp = false;
-    this->movingDown = false;
-    this->movingRight = false;
-    this->movingLeft = false;
-
     //load textures
     this->textures.load(TextureContainer::TextureType::Player, "Media\\Textures\\player.png");
     this->textures.load(TextureContainer::TextureType::Alien, "Media\\Textures\\alien.png");
 
     //load player texture and set its position
-    this->player.setTexture(this->textures.get(TextureContainer::TextureType::Player));
-    this->player.scale(sf::Vector2f(0.15f, 0.15f));
-    float playerWidth = this->player.getGlobalBounds().width;
-    float playerHeight = this->player.getGlobalBounds().height;
-
-    float windowWidth = static_cast<float>(WINDOW_WIDTH); 
-    float windowHeight = static_cast<float>(WINDOW_HEIGHT); 
-    float playerX = (windowWidth - playerWidth) / 2.f;
-    float playerY = windowHeight - playerHeight; 
-    this->player.setPosition(playerX, playerY);
+    this->player.setup(this->textures.get(TextureContainer::TextureType::Player), static_cast<float>(WINDOW_WIDTH), static_cast<float>(WINDOW_HEIGHT));
 
     //initialize aliens and set their position
-    this->alienMatrix.setupAliens(this->textures.get(TextureContainer::TextureType::Alien), 50.f, 50.f);
+    this->alienMatrix.setup(this->textures.get(TextureContainer::TextureType::Alien), 50.f, 50.f);
     this->alienMatrix.setPosition((WINDOW_WIDTH - this->alienMatrix.getAlienWidth() * AlienMatrix::COLS) / 2.f, 50);
 }
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed){
-    if(key == sf::Keyboard::W){
-        this->movingUp = isPressed;
-    } else if (key == sf::Keyboard::S){
-        this->movingDown = isPressed;
-    } else if (key == sf::Keyboard::A){
-        this->movingLeft = isPressed;
-    } else if (key == sf::Keyboard::D){
-        this->movingRight = isPressed;
-    }
+    this->player.updateMovementDirection(key, isPressed);
 }
 
 //process user input
@@ -72,20 +49,7 @@ sf::Event event;
 //updates the game logic
 //deltaTime: how much time has elapsed since last update
 void Game::update(sf::Time deltaTime){
-    sf::Vector2f movement(0.f, 0.f);
-    if(movingUp){
-        movement.y -= this->playerSpeed;
-    }
-    if(movingDown){
-        movement.y += this->playerSpeed;
-    }
-    if(movingRight){
-        movement.x += this->playerSpeed;
-    }
-    if(movingLeft){
-        movement.x -= this->playerSpeed;
-    }
-    this->player.move(movement * deltaTime.asSeconds());
+    this->player.updatePosition(deltaTime);
 }
 
 //render the game to the screen

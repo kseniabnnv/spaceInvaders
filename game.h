@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "textureContainer.h"
 #include "alienMatrix.h"
+#include "player.h"
 
 #ifndef GAME_H
 #define GAME_H
@@ -20,13 +21,14 @@ class Game
         sf::RenderWindow window;
         TextureContainer textures;
         AlienMatrix alienMatrix;
-        sf::Sprite player;
+        Player player;
+        //sf::Sprite player;
 
-        float playerSpeed;
-        bool movingUp;
-        bool movingDown;
-        bool movingRight;
-        bool movingLeft;
+        // float playerSpeed;
+        // bool movingUp;
+        // bool movingDown;
+        // bool movingRight;
+        // bool movingLeft;
 
         void processEvents();
         void handlePlayerInput(sf::Keyboard::Key, bool);
