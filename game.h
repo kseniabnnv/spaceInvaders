@@ -9,13 +9,14 @@
 class Game
 {
     public:
+        static const int WINDOW_HEIGHT = 600;
+        static const int WINDOW_WIDTH = 800;
+        
         Game();
         void run();
         
     private:
         static const sf::Time TIME_PER_FRAME;
-        static const int WINDOW_HEIGHT = 600;
-        static const int WINDOW_WIDTH = 800;
 
         int state;
         sf::RenderWindow window;

@@ -1,4 +1,5 @@
 #include "player.h"
+#include "game.h"
 
 Player::Player(){
     this->playerSpeed = 400.f;
@@ -9,16 +10,16 @@ Player::Player(){
     this->movingLeft = false;
 }
 
-void Player::setup(sf::Texture& playerTexture, float windowWidth, float windowHeight){
+void Player::setup(sf::Texture& playerTexture){
     //load player texture
     this->sprite.setTexture(playerTexture);
     this->sprite.scale(sf::Vector2f(0.15f, 0.15f));
 
     //set the position at the middle of the bottom of the screen
-    float playerWidth = this->sprite.getGlobalBounds().width;
-    float playerHeight = this->sprite.getGlobalBounds().height;
-    float playerX = (windowWidth - playerWidth) / 2.f;
-    float playerY = windowHeight - playerHeight; 
+    this->playerWidth = this->sprite.getGlobalBounds().width;
+    this->playerHeight = this->sprite.getGlobalBounds().height;
+    float playerX = (static_cast<float>(Game::WINDOW_WIDTH) - playerWidth) / 2.f;
+    float playerY = static_cast<float>(Game::WINDOW_HEIGHT) - playerHeight; 
     this->sprite.setPosition(playerX, playerY);
 }
 
@@ -52,7 +53,24 @@ void Player::updatePosition(sf::Time deltaTime){
     if(movingLeft){
         movement.x -= this->playerSpeed;
     }
-    this->sprite.move(movement * deltaTime.asSeconds());
+    moveWithBoundRestrictions(movement * deltaTime.asSeconds());
+}
+
+void Player::moveWithBoundRestrictions(sf::Vector2f movement){
+    //calculate where the player will end up after we move with the given vector
+    sf::Vector2f position = this->sprite.getPosition();
+    sf::Vector2f newPosition = position + movement;
+
+    //if the player will end up outside the window, 
+    //decrease the vector so that the player ends up on right on the edge
+    if(newPosition.x + this->playerWidth > Game::WINDOW_WIDTH || newPosition.x <= 0){
+        movement.x = 0;
+    } 
+    if(newPosition.y + this->playerHeight > Game::WINDOW_HEIGHT || newPosition.y <= 0){
+        movement.y = 0;
+    } 
+
+    this->sprite.move(movement);
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const{

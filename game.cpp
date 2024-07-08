@@ -16,7 +16,7 @@ Game::Game()
     this->textures.load(TextureContainer::TextureType::Alien, "Media\\Textures\\alien.png");
 
     //load player texture and set its position
-    this->player.setup(this->textures.get(TextureContainer::TextureType::Player), static_cast<float>(WINDOW_WIDTH), static_cast<float>(WINDOW_HEIGHT));
+    this->player.setup(this->textures.get(TextureContainer::TextureType::Player));
 
     //initialize aliens and set their position
     this->alienMatrix.setup(this->textures.get(TextureContainer::TextureType::Alien), 50.f, 50.f);

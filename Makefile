@@ -17,4 +17,4 @@ alien.o: alien.h alien.cpp
 alienMatrix.o: alienMatrix.h alienMatrix.cpp
 	g++ -c alienMatrix.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
 clean:
-	rm –f *.o $(exe_file)
+	del *.o $(exe_file).exe
