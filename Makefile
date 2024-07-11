@@ -2,8 +2,8 @@ exe_file=prog
 SFML_INCLUDE_PATH = C:/SFML-2.6.1/include
 LDFLAGS = -LC:/SFML-2.6.1/lib -lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lopengl32 -lfreetype -lwinmm -lgdi32
 
-$(exe_file): main.o game.o textureContainer.o alienMatrix.o player.o
-	g++ main.o game.o textureContainer.o alienMatrix.o player.o -o $(exe_file) $(LDFLAGS)
+$(exe_file): main.o game.o textureContainer.o alienMatrix.o player.o alien.o
+	g++ main.o game.o textureContainer.o alienMatrix.o player.o alien.o -o $(exe_file) $(LDFLAGS)
 main.o: main.cpp
 	g++ -c main.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
 game.o: game.cpp game.h

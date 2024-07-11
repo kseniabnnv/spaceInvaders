@@ -1,9 +1,9 @@
-#include <array>
-#include <memory>
-#include <SFML/Graphics.hpp>
-
 #ifndef ALIENMATRIX_H
 #define ALIENCMATRIX_H
+
+#include <array>
+#include <memory>
+#include "alien.h"
 
 class AlienMatrix : public sf::Drawable, public sf::Transformable{
     public:
@@ -19,7 +19,7 @@ class AlienMatrix : public sf::Drawable, public sf::Transformable{
 
         float alienHeight;
         float alienWidth;
-        std::array<std::array<std::unique_ptr<sf::Sprite>, COLS>, ROWS> aliens;
+        std::array<std::array<std::unique_ptr<Alien>, COLS>, ROWS> aliens;
 };
 
 #endif

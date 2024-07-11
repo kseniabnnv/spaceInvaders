@@ -1,23 +1,21 @@
-#include <SFML/Graphics.hpp>
-
 #ifndef ALIEN_H
 #define ALIEN_H
 
-class Alien
+#include <SFML/Graphics.hpp>
+
+class Alien : public sf::Drawable, public sf::Transformable
 {
     public:
-        Alien(sf::Texture&);
+        void setup(sf::Texture&);
         void damage(int);
         int getHitpoints();
         bool isDead();
-        void setPosition(sf::Vector2f);
-        sf::Vector2f getPosition();
+        //void setPosition(sf::Vector2f);
+        //sf::Vector2f getPosition();
     private:
-        //movement pattern?
-        // right down
-        // left down
         sf::Sprite sprite;
         int hitPoints;
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates) const;
 };
 
 #endif

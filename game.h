@@ -1,10 +1,9 @@
-#include <SFML/Graphics.hpp>
+#ifndef GAME_H
+#define GAME_H
+
 #include "textureContainer.h"
 #include "alienMatrix.h"
 #include "player.h"
-
-#ifndef GAME_H
-#define GAME_H
 
 class Game
 {
@@ -23,13 +22,6 @@ class Game
         TextureContainer textures;
         AlienMatrix alienMatrix;
         Player player;
-        //sf::Sprite player;
-
-        // float playerSpeed;
-        // bool movingUp;
-        // bool movingDown;
-        // bool movingRight;
-        // bool movingLeft;
 
         void processEvents();
         void handlePlayerInput(sf::Keyboard::Key, bool);

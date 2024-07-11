@@ -1,9 +1,16 @@
 #include "alien.h"
 #include <SFML/Graphics.hpp>
 
-Alien::Alien(sf::Texture& texture){
+void Alien::setup(sf::Texture& texture){
     this->sprite.setTexture(texture);
+    //this->sprite.setScale(xScale, yScale);
 }
+
+void Alien::draw(sf::RenderTarget& target, sf::RenderStates states) const{
+    states.transform *= getTransform();
+    target.draw(this->sprite, states);
+}
+
 
 void Alien::damage(int points){
     this->hitPoints -= points;
@@ -17,10 +24,10 @@ int Alien::getHitpoints(){
     return this->hitPoints;
 }
 
-void Alien::setPosition(sf::Vector2f newPosition){
-    this->sprite.setPosition(newPosition);
-}
+// void Alien::setPosition(sf::Vector2f newPosition){
+//     this->sprite.setPosition(newPosition);
+// }
 
-sf::Vector2f Alien::getPosition(){
-    return this->sprite.getPosition();
-}
+// sf::Vector2f Alien::getPosition(){
+//     return this->sprite.getPosition();
+// }

@@ -1,10 +1,10 @@
+#ifndef TEXTURECONTAINER_H
+#define TEXTURECONTAINER_H
+
 #include <map>
 #include <memory>
 #include <string>
 #include <SFML/Graphics.hpp>
-
-#ifndef TEXTURECONTAINER_H
-#define TEXTURECONTAINER_H
 
 /**
  * Maps texture names to the appropriate sfml texture objects
