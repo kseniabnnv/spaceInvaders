@@ -2,6 +2,7 @@
 #define STATESTACK_H
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "stateTypes.hpp"
 #include "state.h"
 
@@ -30,8 +31,9 @@ class StateStack {
             Action action;
             States stateType;
         };
-        std::vector<State::Ptr> stack;
-        std::vector<PendingChange> pendingChangesList;
+        //std::vector<std::unique_ptr<State>> stack; //store actual states here
+        std::map<States, std::unique_ptr<State>> statesMap;
+        //std::vector<PendingChange> pendingChangesList;
 
         void processPendingChanges();
 };  

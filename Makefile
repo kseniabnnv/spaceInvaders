@@ -16,5 +16,7 @@ alien.o: alien.h alien.cpp
 	g++ -c alien.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
 alienMatrix.o: alienMatrix.h alienMatrix.cpp
 	g++ -c alienMatrix.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
+stateStack.o: stateStack.h stateStack.cpp
+	g++ -c stateStack.cpp -I$(SFML_INCLUDE_PATH) -DSFML_STATIC
 clean:
 	del *.o $(exe_file).exe

@@ -1,7 +1,14 @@
 #include "stateStack.h"
+#include "titleState.h"
+#include "stateTypes.hpp"
+//#include "menuState.h"
+//#include "pauseState.h"
+//#include "gameState.h"
 
 StateStack::StateStack(){
-    //create and put all the states in the vector
+    //create all the states and put in the map
+    this->statesMap[TitleScreen] = std::unique_ptr<TitleState>(new TitleState());
+    //push titleScreen on the stack
 }
 
 //run update function of the top state

@@ -13,12 +13,14 @@
 
 class State{
     public:
-        using Ptr = std::shared_ptr<State>;
+        //using Ptr = std::unique_ptr<State>;
         struct Resources{
             TextureContainer* textures;
             sf::RenderWindow* window;
             Player* player;
         };
+        State(StateStack& stack, Resources resources);
+
 
         virtual void handleEvent(const sf::Event& event) = 0;
         virtual void update(sf::Time deltaTime) = 0;
@@ -26,6 +28,13 @@ class State{
         virtual ~State() = default;
 
     protected:
+        Resources getResources();
+        void requestStackPush(States state);
+        void requestStackPop();
+        void requestStateClear();
+    private:
+        Resources resources;
+        StateStack* stack;
     
 };
 

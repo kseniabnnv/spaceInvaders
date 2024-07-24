@@ -1,5 +1,6 @@
 enum States{
+    TitleScreen,
     Menu,
-    Gameplay,
+    Game,
     Pause
 };
