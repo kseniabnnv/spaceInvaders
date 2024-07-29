@@ -3,8 +3,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <map>
 #include "stateTypes.hpp"
 #include "state.h"
+
+class State;
 
 class StateStack {
     public:

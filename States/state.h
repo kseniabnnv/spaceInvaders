@@ -8,8 +8,10 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include "stateTypes.hpp"
-#include "textureContainer.h"
-#include "player.h"
+#include "../Resources/textureContainer.h"
+#include "stateStack.h"
+
+class StateStack;   //forward declaration
 
 class State{
     public:
@@ -17,7 +19,7 @@ class State{
         struct Resources{
             TextureContainer* textures;
             sf::RenderWindow* window;
-            Player* player;
+            //Player* player;
         };
         State(StateStack& stack, Resources resources);
 
@@ -38,4 +40,4 @@ class State{
     
 };
 
-#endif STATE_H
+#endif

@@ -1,5 +1,5 @@
 #include "player.h"
-#include "game.h"
+#include "../Application/application.h"
 
 Player::Player(){
     this->playerSpeed = 400.f;
@@ -18,8 +18,8 @@ void Player::setup(sf::Texture& playerTexture){
     //set the position at the middle of the bottom of the screen
     this->playerWidth = this->sprite.getGlobalBounds().width;
     this->playerHeight = this->sprite.getGlobalBounds().height;
-    float playerX = (static_cast<float>(Game::WINDOW_WIDTH) - playerWidth) / 2.f;
-    float playerY = static_cast<float>(Game::WINDOW_HEIGHT) - playerHeight; 
+    float playerX = (static_cast<float>(Application::WINDOW_WIDTH) - playerWidth) / 2.f;
+    float playerY = static_cast<float>(Application::WINDOW_HEIGHT) - playerHeight; 
     this->sprite.setPosition(playerX, playerY);
 }
 
@@ -63,10 +63,10 @@ void Player::moveWithBoundRestrictions(sf::Vector2f movement){
 
     //if the player will end up outside the window, 
     //decrease the vector so that the player ends up on right on the edge
-    if(newPosition.x + this->playerWidth > Game::WINDOW_WIDTH || newPosition.x <= 0){
+    if(newPosition.x + this->playerWidth > Application::WINDOW_WIDTH || newPosition.x <= 0){
         movement.x = 0;
     } 
-    if(newPosition.y + this->playerHeight > Game::WINDOW_HEIGHT || newPosition.y <= 0){
+    if(newPosition.y + this->playerHeight > Application::WINDOW_HEIGHT || newPosition.y <= 0){
         movement.y = 0;
     } 
 

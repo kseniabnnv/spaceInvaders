@@ -1,13 +1,13 @@
 #include "stateStack.h"
-#include "titleState.h"
+#include "titleState/titleState.h"
 #include "stateTypes.hpp"
-//#include "menuState.h"
-//#include "pauseState.h"
-//#include "gameState.h"
+#include "menuState/menuState.h"
+#include "pauseState/pauseState.h"
+#include "gameState/gameState.h"
 
 StateStack::StateStack(){
     //create all the states and put in the map
-    this->statesMap[TitleScreen] = std::unique_ptr<TitleState>(new TitleState());
+    //this->statesMap[TitleScreen] = std::unique_ptr<TitleState>(new TitleState());
     //push titleScreen on the stack
 }
 

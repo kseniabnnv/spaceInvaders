@@ -1,7 +1,7 @@
-#include "game.h"
-#include "application.h"
+//#include "game.h"
+#include "Application/application.h"
 
-const sf::Time Game::TIME_PER_FRAME = sf::seconds(1.f / 60.f); 
+//const sf::Time Game::TIME_PER_FRAME = sf::seconds(1.f / 60.f); 
 
 int main()
 {

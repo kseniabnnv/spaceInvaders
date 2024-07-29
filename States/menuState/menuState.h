@@ -1,10 +1,12 @@
-#ifndef TITLESTATE_H
-#define TITLESTATE_H
+#ifndef MENUSTATE_H
+#define MENUSTATE_H
 
-#include "state.h"
+#include "../state.h"
 
-class TitleState : public State{
+class MenuState : public State{
     public:
+        MenuState(StateStack& stack, State::Resources resources);
+        
         virtual void handleEvent(const sf::Event& event);
         virtual void update(sf::Time deltaTime);
         virtual void render(sf::RenderTarget& target);

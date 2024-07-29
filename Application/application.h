@@ -1,12 +1,13 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "stateStack.h"
-#include "alienMatrix.h"
+#include "../States/stateStack.h"
+#include "../Entities/alienMatrix.h"
+
 
 class Application{
     public:
-        static const sf::Time Application::TIME_PER_FRAME;
+        static const sf::Time TIME_PER_FRAME;
         static const int WINDOW_HEIGHT = 600;
         static const int WINDOW_WIDTH = 800;
 
@@ -19,8 +20,8 @@ class Application{
         StateStack stack;
         sf::RenderWindow window;
         TextureContainer textures;
-        AlienMatrix alienMatrix;
-        Player player;
+        //AlienMatrix alienMatrix;
+        //Player player;
 };
 
 #endif
